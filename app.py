@@ -194,82 +194,122 @@ section[data-testid="stSidebar"] {{ display: none !important; }}
 button[kind="header"] {{ display: none !important; }}
 
 /* ─────────── PREMIUM UNIFIED FLOATING NAVBAR ─────────── */
-.st-key-navbar {{
+div[data-testid="stAppViewContainer"] .st-key-navbar {{
     background: var(--navbar-bg) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
     border: 1px solid var(--border-main) !important;
     border-radius: 18px !important;
-    padding: 6px 12px !important;
+    padding: 6px 10px !important;
     margin: 0 auto 1.5rem auto !important;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03) !important;
     position: sticky !important;
     top: 0.5rem !important;
-    z-index: 9999 !important;
+    z-index: 99999 !important;
     animation: slideDown 0.4s ease both !important;
     max-width: 1280px !important;
     width: 100% !important;
+    overflow: visible !important;
 }}
 
-/* Navbar columns alignment & compact spacing */
-.st-key-navbar [data-testid="stHorizontalBlock"] {{
+/* Navbar columns alignment & compact spacing — ALWAYS single row */
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="stHorizontalBlock"] {{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     align-items: center !important;
-    gap: 4px !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    width: 100% !important;
+    gap: 6px !important;
+    padding: 2px 2px !important;
+}}
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="stHorizontalBlock"]::-webkit-scrollbar {{
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }}
 
-.st-key-navbar [data-testid="column"] {{
+/* Navbar column: sizes to its natural content without stretching or 100% mobile stacking */
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] {{
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
     padding: 0 !important;
-    min-width: 0 !important;
+    margin: 0 !important;
+}}
+
+/* Inner column wrappers */
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] > div,
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="stVerticalBlockBorderWrapper"],
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="stVerticalBlock"],
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="element-container"],
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] .stButton,
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] .stMarkdown {{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: max-content !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }}
 
 /* Navbar Brand Icon Badge */
 .navbar-brand-icon {{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-main);
-    font-size: 1.35rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    margin: 0 auto;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 12px !important;
+    background: var(--bg-glass) !important;
+    border: 1px solid var(--border-main) !important;
+    font-size: 1.35rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: default !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
 }}
 .navbar-brand-icon:hover {{
-    transform: scale(1.08);
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
+    transform: scale(1.08) !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.3) !important;
 }}
 
 /* Navbar Buttons — Seamless segmented navigation */
-.st-key-navbar .stButton {{
-    width: 100% !important;
-    margin: 0 !important;
-}}
-
-.st-key-navbar .stButton > button {{
-    width: 100% !important;
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button {{
     height: 38px !important;
-    padding: 0 8px !important;
+    min-height: 38px !important;
+    padding: 0 12px !important;
     font-size: 0.84rem !important;
     font-weight: 500 !important;
     border-radius: 12px !important;
     letter-spacing: 0.2px !important;
     white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-    overflow: hidden !important;
+    width: auto !important;
+    min-width: max-content !important;
+    flex-shrink: 0 !important;
     transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
 }}
 
 /* Inactive nav button — clean, transparent tab */
-.st-key-navbar .stButton > button[kind="secondary"],
-.st-key-navbar .stButton > button[data-testid="baseButton-secondary"] {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="secondary"],
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-secondary"] {{
     background: transparent !important;
     background-color: transparent !important;
     color: var(--text-secondary) !important;
@@ -278,8 +318,8 @@ button[kind="header"] {{ display: none !important; }}
     transform: none !important;
 }}
 
-.st-key-navbar .stButton > button[kind="secondary"]:hover,
-.st-key-navbar .stButton > button[data-testid="baseButton-secondary"]:hover {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="secondary"]:hover,
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-secondary"]:hover {{
     background: var(--bg-glass) !important;
     background-color: var(--bg-glass) !important;
     border-color: var(--border-hover) !important;
@@ -288,22 +328,22 @@ button[kind="header"] {{ display: none !important; }}
     box-shadow: 0 2px 10px rgba(99, 102, 241, 0.12) !important;
 }}
 
-.st-key-navbar .stButton > button[kind="secondary"] *,
-.st-key-navbar .stButton > button[data-testid="baseButton-secondary"] * {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="secondary"] *,
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-secondary"] * {{
     color: var(--text-secondary) !important;
     -webkit-text-fill-color: var(--text-secondary) !important;
     font-weight: 500 !important;
 }}
 
-.st-key-navbar .stButton > button[kind="secondary"]:hover *,
-.st-key-navbar .stButton > button[data-testid="baseButton-secondary"]:hover * {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="secondary"]:hover *,
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-secondary"]:hover * {{
     color: var(--accent-primary) !important;
     -webkit-text-fill-color: var(--accent-primary) !important;
 }}
 
 /* Active nav button — vibrant indigo pill */
-.st-key-navbar .stButton > button[kind="primary"],
-.st-key-navbar .stButton > button[data-testid="baseButton-primary"] {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="primary"],
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-primary"] {{
     background: var(--gradient-1) !important;
     background-color: var(--accent-primary) !important;
     color: #FFFFFF !important;
@@ -314,22 +354,22 @@ button[kind="header"] {{ display: none !important; }}
     transform: translateY(-1px) !important;
 }}
 
-.st-key-navbar .stButton > button[kind="primary"]:hover,
-.st-key-navbar .stButton > button[data-testid="baseButton-primary"]:hover {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="primary"]:hover,
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-primary"]:hover {{
     box-shadow: 0 6px 22px rgba(99, 102, 241, 0.5) !important;
     color: #FFFFFF !important;
     transform: translateY(-2px) !important;
 }}
 
-.st-key-navbar .stButton > button[kind="primary"] *,
-.st-key-navbar .stButton > button[data-testid="baseButton-primary"] * {{
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[kind="primary"] *,
+div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button[data-testid="baseButton-primary"] * {{
     color: #FFFFFF !important;
     -webkit-text-fill-color: #FFFFFF !important;
     font-weight: 700 !important;
 }}
 
 /* Theme toggle inside navbar */
-.st-key-navbar [data-testid="column"]:last-child .stButton > button {{
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"]:last-child .stButton > button {{
     background: var(--bg-glass) !important;
     border: 1px solid var(--border-main) !important;
     border-radius: 12px !important;
@@ -338,16 +378,16 @@ button[kind="header"] {{ display: none !important; }}
     font-size: 0.82rem !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
 }}
-.st-key-navbar [data-testid="column"]:last-child .stButton > button:hover {{
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"]:last-child .stButton > button:hover {{
     border-color: var(--accent-primary) !important;
     color: var(--accent-primary) !important;
     box-shadow: 0 0 12px rgba(99, 102, 241, 0.2) !important;
 }}
-.st-key-navbar [data-testid="column"]:last-child .stButton > button * {{
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"]:last-child .stButton > button * {{
     color: var(--text-primary) !important;
     -webkit-text-fill-color: var(--text-primary) !important;
 }}
-.st-key-navbar [data-testid="column"]:last-child .stButton > button:hover * {{
+div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"]:last-child .stButton > button:hover * {{
     color: var(--accent-primary) !important;
     -webkit-text-fill-color: var(--accent-primary) !important;
 }}
@@ -454,19 +494,19 @@ button[kind="header"] {{ display: none !important; }}
 /* ─────────── PAGE HEADER ─────────── */
 .page-header {{
     text-align: center;
-    margin: 1.5rem 0 2.5rem;
+    margin: 1.2rem 0 2rem;
     animation: fadeInUp 0.5s ease both;
 }}
 .page-header h1 {{
-    font-size: 2.4rem;
+    font-size: clamp(1.5rem, 3.2vw + 0.4rem, 2.4rem) !important;
     font-weight: 900;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.25;
 }}
 .page-header p {{
     color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-top: 10px;
+    font-size: clamp(0.88rem, 1.2vw + 0.2rem, 1.05rem);
+    margin-top: 8px;
 }}
 
 /* ─────────── HERO SECTION ─────────── */
@@ -477,12 +517,12 @@ button[kind="header"] {{ display: none !important; }}
     justify-content: center !important;
     text-align: center !important;
     width: 100% !important;
-    padding: 2.2rem 1rem 1.6rem !important;
+    padding: 1.8rem 1rem 1.4rem !important;
     margin: 0 auto !important;
     animation: fadeInUp 0.6s ease both;
 }}
 .hero-title {{
-    font-size: 2.8rem !important;
+    font-size: clamp(1.65rem, 4vw + 0.4rem, 2.8rem) !important;
     font-weight: 900 !important;
     background: var(--gradient-1) !important;
     -webkit-background-clip: text !important;
@@ -494,7 +534,7 @@ button[kind="header"] {{ display: none !important; }}
 }}
 .hero-subtitle {{
     color: var(--text-secondary) !important;
-    font-size: 1.1rem !important;
+    font-size: clamp(0.92rem, 1.5vw + 0.3rem, 1.1rem) !important;
     margin: 14px auto 0 auto !important;
     max-width: 760px !important;
     width: 100% !important;
@@ -1041,138 +1081,198 @@ table, thead, tbody, tr, th, td {{
     animation: fadeInUp 0.6s ease both;
 }}
 
-/* ─────────── RESPONSIVE DESIGN (MOBILE & TABLET / iOS & ANDROID) ─────────── */
+/* ─────────── RESPONSIVE SYSTEM (DESKTOP RESIZE, TABLET, MOBILE / iOS & ANDROID) ─────────── */
 
 /* Touch & tap optimization */
 * {{
     -webkit-tap-highlight-color: transparent !important;
 }}
 
-/* Tablet and below (<= 992px) */
-@media (max-width: 992px) {{
-    .hero-title {{
-        font-size: 2.2rem !important;
+/* 1. Large screens (> 1100px): Centered, spacious dock */
+@media (min-width: 1100px) {{
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="stHorizontalBlock"] {{
+        justify-content: center !important;
+        gap: 8px !important;
     }}
-    .hero-subtitle {{
-        font-size: 1rem !important;
-        max-width: 90% !important;
-    }}
-    .st-key-navbar {{
-        padding: 5px 8px !important;
-    }}
-    .st-key-navbar .stButton > button {{
-        font-size: 0.8rem !important;
-        padding: 0 6px !important;
+    div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button {{
+        padding: 0 15px !important;
+        font-size: 0.86rem !important;
     }}
 }}
 
-/* Mobile and Tablet (<= 768px) */
+/* 2. Resized PC window & Tablets (769px to 1099px) */
+@media (max-width: 1099px) and (min-width: 769px) {{
+    div[data-testid="stAppViewContainer"] .st-key-navbar {{
+        padding: 5px 8px !important;
+    }}
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="stHorizontalBlock"] {{
+        justify-content: flex-start !important;
+        gap: 5px !important;
+    }}
+    div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button {{
+        padding: 0 10px !important;
+        font-size: 0.81rem !important;
+        height: 36px !important;
+        min-height: 36px !important;
+    }}
+
+    /* 4-column blocks (KPI cards, metrics, filters, form row 5) adapt into 2x2 grid */
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) {{
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }}
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(4),
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(4) ~ [data-testid="column"] {{
+        flex: 1 1 calc(50% - 12px) !important;
+        min-width: calc(50% - 12px) !important;
+        max-width: calc(50% - 12px) !important;
+    }}
+
+    /* 3-column blocks (Predict inputs, About cards) wrap gracefully */
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(3),
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(3) ~ [data-testid="column"] {{
+        flex: 1 1 calc(50% - 12px) !important;
+        min-width: calc(50% - 12px) !important;
+    }}
+}}
+
+/* 3. Medium Screens & Side-by-Side Content (<= 992px) */
+@media (max-width: 992px) {{
+    /* 2-column blocks (Charts, Prediction Result + Gauge) stack into full-width cards */
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(2),
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"]:nth-last-child(2) ~ [data-testid="column"] {{
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+    }}
+}}
+
+/* 4. Mobile & Small Tablet (<= 768px): iOS / Android optimized */
 @media (max-width: 768px) {{
-    /* Eliminate wasted edge margins on mobile viewports */
+    /* Page margins: flush and clean for phone screens */
     .block-container {{
-        padding-top: 0.4rem !important;
+        padding-top: 0.3rem !important;
         padding-bottom: 2rem !important;
-        padding-left: 0.65rem !important;
-        padding-right: 0.65rem !important;
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
         max-width: 100% !important;
     }}
 
-    /* Floating Navbar on mobile — horizontally scrollable swipeable pill dock */
-    .st-key-navbar {{
+    /* Floating Navbar on mobile — Single-row swipeable pill dock that NEVER stacks */
+    div[data-testid="stAppViewContainer"] .st-key-navbar {{
         border-radius: 14px !important;
         padding: 4px 6px !important;
-        top: 0.25rem !important;
-        margin-bottom: 1rem !important;
-        overflow: hidden !important;
+        top: 0.2rem !important;
+        margin-bottom: 0.8rem !important;
+        overflow: visible !important;
+        position: sticky !important;
     }}
-    .st-key-navbar [data-testid="stHorizontalBlock"] {{
+
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="stHorizontalBlock"] {{
         display: flex !important;
+        flex-direction: row !important;
         flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
         overflow-x: auto !important;
+        overflow-y: hidden !important;
         -webkit-overflow-scrolling: touch !important;
         scrollbar-width: none !important;
-        gap: 4px !important;
-        padding: 2px 0 !important;
+        gap: 5px !important;
+        padding: 2px 2px !important;
     }}
-    .st-key-navbar [data-testid="stHorizontalBlock"]::-webkit-scrollbar {{
-        display: none !important;
-    }}
-    .st-key-navbar [data-testid="column"] {{
+
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] {{
+        display: flex !important;
         flex: 0 0 auto !important;
         width: auto !important;
         min-width: max-content !important;
+        max-width: none !important;
     }}
-    .st-key-navbar .stButton > button {{
+
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] > div,
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="stVerticalBlockBorderWrapper"],
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="stVerticalBlock"],
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] [data-testid="element-container"],
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] .stButton,
+    div[data-testid="stAppViewContainer"] .st-key-navbar [data-testid="column"] .stMarkdown {{
+        display: inline-flex !important;
+        width: auto !important;
+        min-width: max-content !important;
+        flex: 0 0 auto !important;
+    }}
+
+    div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button {{
         height: 36px !important;
-        padding: 0 12px !important;
-        font-size: 0.82rem !important;
+        min-height: 36px !important;
+        padding: 0 11px !important;
+        font-size: 0.80rem !important;
+        white-space: nowrap !important;
         min-width: max-content !important;
         border-radius: 10px !important;
+        flex-shrink: 0 !important;
     }}
+
     .navbar-brand-icon {{
         width: 36px !important;
         height: 36px !important;
-        font-size: 1.2rem !important;
+        min-width: 36px !important;
+        font-size: 1.15rem !important;
+        border-radius: 10px !important;
+    }}
+
+    /* ALL other content columns stack vertically to 100% width on mobile */
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) {{
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }}
+    div[data-testid="stAppViewContainer"] [data-testid="stHorizontalBlock"]:not(.st-key-navbar [data-testid="stHorizontalBlock"]) > [data-testid="column"] {{
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }}
 
     /* Hero section */
     .hero-section {{
-        padding: 1.5rem 0.5rem 1rem !important;
-    }}
-    .hero-title {{
-        font-size: 1.75rem !important;
-        line-height: 1.25 !important;
-    }}
-    .hero-subtitle {{
-        font-size: 0.92rem !important;
-        line-height: 1.5 !important;
-        margin: 10px auto 0 auto !important;
-        padding: 0 4px !important;
+        padding: 1.2rem 0.4rem 0.8rem !important;
     }}
     .hero-badges {{
         gap: 6px !important;
-        margin-top: 14px !important;
+        margin-top: 12px !important;
     }}
     .hero-badge {{
         padding: 4px 10px !important;
-        font-size: 0.74rem !important;
+        font-size: 0.73rem !important;
     }}
 
-    /* Page headers */
-    .page-header {{
-        margin: 1rem 0 1.5rem !important;
-    }}
-    .page-header h1 {{
-        font-size: 1.65rem !important;
-    }}
-    .page-header p {{
-        font-size: 0.88rem !important;
-    }}
+    /* Section titles */
     .section-title {{
-        font-size: 1.12rem !important;
-        margin: 1.4rem 0 0.7rem !important;
+        font-size: 1.15rem !important;
+        margin: 1.2rem 0 0.6rem !important;
     }}
 
     /* KPI Cards */
     .kpi-card {{
-        padding: 16px 10px !important;
+        padding: 16px 12px !important;
         border-radius: 12px !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 6px !important;
     }}
     .kpi-card .kpi-icon {{
         font-size: 1.5rem !important;
         margin-bottom: 4px !important;
     }}
     .kpi-card .kpi-value {{
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
     }}
     .kpi-card .kpi-label {{
-        font-size: 0.68rem !important;
+        font-size: 0.70rem !important;
         letter-spacing: 0.8px !important;
         margin-top: 4px !important;
     }}
 
-    /* Input controls (prevent iOS Safari 16px auto-zoom + comfortable touch targets) */
+    /* Input controls (prevent iOS Safari 16px auto-zoom + touch target 46px) */
     input,
     textarea,
     select,
@@ -1180,13 +1280,13 @@ table, thead, tbody, tr, th, td {{
     [data-testid="stNumberInput-Input"],
     [data-testid="stTextInput-Input"] {{
         font-size: 16px !important;
-        min-height: 44px !important;
+        min-height: 46px !important;
     }}
     [data-baseweb="input"],
     [data-baseweb="base-input"],
     [data-baseweb="select"],
     [data-baseweb="select"] > div {{
-        min-height: 44px !important;
+        min-height: 46px !important;
     }}
 
     /* Form container */
@@ -1199,6 +1299,7 @@ table, thead, tbody, tr, th, td {{
         padding: 0.85rem 1.2rem !important;
         font-size: 1rem !important;
         min-height: 48px !important;
+        width: 100% !important;
     }}
 
     /* Prediction Result Cards */
@@ -1219,7 +1320,7 @@ table, thead, tbody, tr, th, td {{
         margin-bottom: 10px !important;
     }}
 
-    /* Tables on mobile */
+    /* Custom Tables */
     .custom-table-wrapper {{
         border-radius: 10px !important;
         margin: 0.6rem 0 !important;
@@ -1240,22 +1341,17 @@ table, thead, tbody, tr, th, td {{
     }}
 }}
 
-/* Small phones (<= 480px: iPhone SE, compact Androids) */
+/* 5. Small phones (<= 480px: iPhone SE, compact Androids) */
 @media (max-width: 480px) {{
-    .hero-title {{
-        font-size: 1.5rem !important;
-    }}
-    .hero-subtitle {{
-        font-size: 0.85rem !important;
-    }}
-    .page-header h1 {{
-        font-size: 1.45rem !important;
-    }}
     .kpi-card .kpi-value {{
-        font-size: 1.35rem !important;
+        font-size: 1.4rem !important;
     }}
     .custom-table th, .custom-table td {{
         padding: 8px 10px !important;
+    }}
+    div[data-testid="stAppViewContainer"] .st-key-navbar .stButton > button {{
+        padding: 0 9px !important;
+        font-size: 0.78rem !important;
     }}
 }}
 </style>
@@ -1364,7 +1460,7 @@ def get_plotly_layout():
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(family="Inter, sans-serif", color="#e2e8f0"),
-            margin=dict(l=40, r=40, t=50, b=40),
+            margin=dict(l=24, r=24, t=44, b=32),
             xaxis=dict(gridcolor="rgba(148,163,184,0.08)", zerolinecolor="rgba(148,163,184,0.08)"),
             yaxis=dict(gridcolor="rgba(148,163,184,0.08)", zerolinecolor="rgba(148,163,184,0.08)"),
         )
@@ -1373,7 +1469,7 @@ def get_plotly_layout():
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
             font=dict(family="Inter, sans-serif", color="#1e293b"),
-            margin=dict(l=40, r=40, t=50, b=40),
+            margin=dict(l=24, r=24, t=44, b=32),
             xaxis=dict(gridcolor="rgba(148,163,184,0.15)", zerolinecolor="rgba(148,163,184,0.15)"),
             yaxis=dict(gridcolor="rgba(148,163,184,0.15)", zerolinecolor="rgba(148,163,184,0.15)"),
         )
