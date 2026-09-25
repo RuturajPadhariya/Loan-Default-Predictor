@@ -1,0 +1,14 @@
+# Ignore everything in root by default
+/*
+
+# Whitelist project files to commit
+!app.py
+!Loan_Default.pkl
+!Scaler.pkl
+!requirements.txt
+!.gitignore
+
+# Allow .streamlit directory and specifically config.toml
+!.streamlit/
+.streamlit/*
+!.streamlit/config.toml
